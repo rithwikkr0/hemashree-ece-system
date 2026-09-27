@@ -160,15 +160,18 @@ This portfolio is configured as a purely static single-page application and does
 ### Step-by-Step Setup:
 1. Log in to the [Cloudflare Dashboard](https://dash.cloudflare.com/).
 2. Navigate to **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-3. Select your GitHub repository (`hemashree-ece-system`).
+3. Select your GitHub repository: **`rithwikkr0/hemashree-ece-system`**.
 4. Configure Build settings:
+   - **Project name**: `hemashree-portfolio`
+   - **Production branch**: `main`
    - **Framework preset**: `Vite`
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
    - **Root directory**: `/` (or leave blank)
-   - **Environment variables**: None required (100% self-contained static build).
+   - **Node version**: `20.18.0` (automatically read from `.node-version`)
+   - **Environment variables**: *None required* (100% self-contained static build).
 5. Click **Save and Deploy**.
-6. Cloudflare Pages will build and deploy the application globally across 300+ edge data centers.
+6. Cloudflare Pages will build and deploy the application globally at **`https://hemashree-portfolio.pages.dev`**.
 
 ---
 
