@@ -28,7 +28,7 @@ export const ProjectExperience: React.FC = () => {
   // Find index of currently selected project
   const initialIndex = PROJECTS_DATA.findIndex((p) => p.id === selectedProjectId || p.slug === selectedProjectId);
   const [projectIndex, setProjectIndex] = useState(initialIndex >= 0 ? initialIndex : 0);
-  const [showIntro, setShowIntro] = useState(true);
+  const [showIntro, setShowIntro] = useState(false);
   const [cinematicModalId, setCinematicModalId] = useState<string | null>(null);
 
   if (!selectedProjectId) return null;
@@ -46,7 +46,6 @@ export const ProjectExperience: React.FC = () => {
 
   const handleNavigate = (newIdx: number) => {
     setProjectIndex(newIdx);
-    setShowIntro(true);
   };
 
   const handleExit = () => {

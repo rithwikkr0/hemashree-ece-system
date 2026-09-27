@@ -30,7 +30,7 @@ class WebGLBoundary extends React.Component<
 }
 
 export const HeroCanvas: React.FC = () => {
-  const { bootStage, isBooting, performanceMode, labViewMode } = useSystem();
+  const { bootStage, isBooting, performanceMode, labViewMode, selectedStationId } = useSystem();
   const [webGLSupported, setWebGLSupported] = useState(true);
 
   // Check WebGL availability on mount
@@ -77,11 +77,11 @@ export const HeroCanvas: React.FC = () => {
       {/* 2D Boot HUD Overlay (Active during boot sequence) */}
       <BootHUDOverlay stage={bootStage} />
 
-      {/* 2D Hero Typography Overlay (Active at Lab Overview) */}
-      {!isBooting && labViewMode === 'LAB_OVERVIEW' && <HeroOverlay />}
+      {/* 2D Hero Typography Overlay (Active when viewing lab overview without station focus) */}
+      {!isBooting && labViewMode === 'LAB_OVERVIEW' && !selectedStationId && <HeroOverlay />}
 
-      {/* 2D Lab HUD & Station Navigation Dock (Active in Hero/Lab state) */}
-      {!isBooting && <LabHUDOverlay />}
+      {/* 2D Lab HUD & Station Navigation Dock (Active ONLY when a station is focused or inspected) */}
+      {!isBooting && (selectedStationId !== null || labViewMode !== 'LAB_OVERVIEW') && <LabHUDOverlay />}
 
       {/* Veo Cinematic Boot Background Texture Layer (Muted, non-blocking, subtle opacity) */}
       {isBooting && (

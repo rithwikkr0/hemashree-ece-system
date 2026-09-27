@@ -89,98 +89,63 @@ export const CinematicBootDirector: React.FC<CinematicBootDirectorProps> = ({
     });
     timelineRef.current = tl;
 
-    // Scene 01: BOOT (0 - 1.2s)
+    // Scene 01: BOOT (0.0s - 0.5s)
     tl.call(() => {
       setBootStage('BOOT');
       triggerAudio('boot');
     }, undefined, 0);
 
-    // Scene 02: PCB_POWER (1.2s - 3.2s)
+    // Scene 02: PCB_POWER (0.5s - 1.4s)
     tl.call(() => {
       setBootStage('PCB_POWER');
       triggerAudio('pulse');
-    }, undefined, 1.2);
+    }, undefined, 0.5);
 
     tl.to(state, {
       pcbPower: 1,
-      duration: 1.8,
+      camZ: 2.2,
+      duration: 0.9,
       ease: 'power2.out',
-    }, 1.2);
+    }, 0.5);
 
-    // Scene 03: CAMERA_FLIGHT (3.2s - 4.5s)
-    tl.call(() => {
-      setBootStage('CAMERA_FLIGHT');
-      triggerAudio('pulse');
-    }, undefined, 3.2);
-
-    tl.to(state, {
-      camZ: 1.8,
-      camY: 0.1,
-      duration: 1.3,
-      ease: 'power2.inOut',
-    }, 3.2);
-
-    // Scene 04: PORTRAIT_REVEAL (4.5s - 6.0s)
+    // Scene 03: PORTRAIT_REVEAL (1.4s - 2.4s)
     tl.call(() => {
       setBootStage('PORTRAIT_REVEAL');
-    }, undefined, 4.5);
+    }, undefined, 1.4);
 
     tl.to(state, {
       portraitReveal: 1,
-      camZ: 3.5,
-      camY: 0,
-      duration: 1.5,
-      ease: 'power1.out',
-    }, 4.5);
-
-    // Scene 05: HUD_SCAN (6.0s - 7.5s)
-    tl.call(() => {
-      setBootStage('HUD_SCAN');
-      triggerAudio('scan');
-    }, undefined, 6.0);
-
-    tl.to(state, {
       portraitScan: 1,
-      duration: 1.4,
-      ease: 'linear',
-    }, 6.0);
+      camZ: 3.8,
+      camY: 0,
+      duration: 1.0,
+      ease: 'power1.out',
+    }, 1.4);
 
-    // Scene 06: PARTICLE_TRANSFORMATION (7.5s - 9.0s)
-    tl.call(() => {
-      setBootStage('PARTICLE_TRANSFORM');
-      triggerAudio('pulse');
-    }, undefined, 7.5);
-
-    tl.to(state, {
-      portraitDissolve: 1,
-      duration: 1.5,
-      ease: 'power2.inOut',
-    }, 7.5);
-
-    // Scene 07: CORE_ACTIVATE (9.0s - 10.5s)
+    // Scene 04: CORE_ACTIVATE (2.4s - 2.9s)
     tl.call(() => {
       setBootStage('CORE_ACTIVATE');
       triggerAudio('coreConfirm');
-    }, undefined, 9.0);
+    }, undefined, 2.4);
 
     tl.to(state, {
+      portraitDissolve: 1,
       coreActivation: 1,
-      camZ: 5.5,
-      duration: 1.5,
-      ease: 'back.out(1.4)',
-    }, 9.0);
-
-    // Scene 08: HERO (10.5s)
-    tl.to(state, {
       camZ: 7.2,
-      duration: 1.2,
-      ease: 'power2.out',
-    }, 10.5);
+      duration: 0.5,
+      ease: 'power2.inOut',
+    }, 2.4);
+
+    // Transition directly to HERO when sequence ends at 2.9s
+    tl.call(() => {
+      setBootStage('HERO');
+      setIsBooting(false);
+    }, undefined, 2.9);
 
     return () => {
       tl.kill();
     };
-  }, [isIntroSkipped, bootStage, setBootStage, setIsBooting, triggerAudio]);
+  }, [isIntroSkipped]);
 
   // Frame update: sync Three.js camera with animState + subtle mouse parallax
   useFrame(() => {

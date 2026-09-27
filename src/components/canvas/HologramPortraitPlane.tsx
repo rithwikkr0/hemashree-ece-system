@@ -19,11 +19,11 @@ export const HologramPortraitPlane: React.FC<HologramPortraitPlaneProps> = ({
   const particlesRef = useRef<THREE.Points>(null);
   const [texture, setTexture] = useState<THREE.Texture | null>(null);
 
-  // Load portrait texture safely with fallback
+  // Load original photo texture safely with fallback
   useEffect(() => {
     const loader = new THREE.TextureLoader();
     loader.load(
-      ASSET_PATHS.portraits.hero,
+      ASSET_PATHS.portraits.verifiedOriginal,
       (tex) => {
         tex.minFilter = THREE.LinearFilter;
         tex.magFilter = THREE.LinearFilter;

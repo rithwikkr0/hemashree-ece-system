@@ -153,6 +153,38 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setBootStage('HERO');
   };
 
+  // Directive 1: RAPID AUTO-DISMISS & IMMEDIATE INTERACTION DISMISSAL
+  useEffect(() => {
+    if (!isBooting) return;
+
+    // Any user touch, scroll, click, or wheel immediately dismisses boot
+    const handleDismissInteraction = () => {
+      skipIntro();
+    };
+
+    window.addEventListener('wheel', handleDismissInteraction, { passive: true, once: true });
+    window.addEventListener('touchstart', handleDismissInteraction, { passive: true, once: true });
+    window.addEventListener('scroll', handleDismissInteraction, { passive: true, once: true });
+    window.addEventListener('keydown', handleDismissInteraction, { once: true });
+    window.addEventListener('click', handleDismissInteraction, { once: true });
+
+    const isMobile = typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    const timeoutDuration = isMobile ? 1000 : 2500;
+
+    const timer = setTimeout(() => {
+      skipIntro();
+    }, timeoutDuration);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('wheel', handleDismissInteraction);
+      window.removeEventListener('touchstart', handleDismissInteraction);
+      window.removeEventListener('scroll', handleDismissInteraction);
+      window.removeEventListener('keydown', handleDismissInteraction);
+      window.removeEventListener('click', handleDismissInteraction);
+    };
+  }, [isBooting]);
+
   const replayIntro = () => {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('ece_intro_skipped');

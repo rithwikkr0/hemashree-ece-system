@@ -51,21 +51,6 @@ export const LabHUDOverlay: React.FC = () => {
 
   return (
     <>
-      {/* Top Left: Lab System Status Telemetry */}
-      <div className="absolute top-16 left-6 z-30 pointer-events-none hidden md:block select-none font-mono text-[10px]">
-        <div className="bg-ece-obsidian/85 backdrop-blur-md border border-ece-cyan/30 px-3 py-2 rounded tech-corner-cut-sm space-y-1 shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-          <div className="flex items-center gap-2 text-ece-cyan font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-ece-cyan animate-ping" />
-            <span>ECE LAB // ACTIVE</span>
-          </div>
-          <div className="flex items-center gap-3 text-slate-400 text-[9px] pt-0.5 border-t border-white/5">
-            <span>STATIONS: <strong className="text-white">07 ONLINE</strong></span>
-            <span>LOAD: <strong className="text-emerald-400">38% [SIMULATION]</strong></span>
-            <span>SIGNAL: <strong className="text-ece-cyan">NOMINAL</strong></span>
-          </div>
-        </div>
-      </div>
-
       {/* Bottom Center: Station Navigation Dock */}
       <div className="absolute bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-30 pointer-events-auto select-none max-w-full px-3">
         <div className="flex items-center gap-1 p-1 bg-ece-obsidian/90 backdrop-blur-xl border border-ece-cyan/30 rounded-full shadow-[0_0_25px_rgba(0,0,0,0.9)] overflow-x-auto max-w-[95vw]">
