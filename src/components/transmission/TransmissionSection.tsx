@@ -50,10 +50,10 @@ export const TransmissionSection: React.FC = () => {
     },
     {
       id: 'resume',
-      label: 'RESUME',
-      value: 'Hemashree_BM_Resume.pdf',
-      description: 'Standardized technical CV',
-      href: ASSET_PATHS.resume.pdfPath,
+      label: 'MASTER RESUME',
+      value: 'Hemashree_BM_Master_ATS_Resume.pdf',
+      description: 'ATS-optimized master curriculum vitae',
+      href: ASSET_PATHS.resume.masterAtsPath,
       icon: FileText,
       isExternal: true,
       action: 'VIEW PDF →'
