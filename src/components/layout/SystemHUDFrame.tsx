@@ -16,6 +16,7 @@ const DOMAIN_SEQUENCE: ECEDomain[] = [
 
 export const SystemHUDFrame: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const {
+    isBooting,
     systemTime,
     uptimeSeconds,
     soundEnabled,
@@ -46,8 +47,9 @@ export const SystemHUDFrame: React.FC<{ children: React.ReactNode }> = ({ childr
       <div className="fixed inset-0 pcb-grid pointer-events-none opacity-10 z-0" />
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(5,8,12,0.92)_100%)] pointer-events-none z-0" />
 
-      {/* Top Right Quick Controls: Audio & Performance */}
-      <div className="fixed top-4 right-4 z-40 flex items-center gap-2 font-mono text-[10px] select-none">
+      {/* Top Right Quick Controls: Audio & Performance (shown only after boot completes) */}
+      {!isBooting && (
+        <div className="fixed top-4 right-4 z-40 flex items-center gap-2 font-mono text-[10px] select-none">
         {/* Performance Mode Switcher */}
         <button
           onClick={cyclePerformance}
@@ -76,7 +78,8 @@ export const SystemHUDFrame: React.FC<{ children: React.ReactNode }> = ({ childr
         >
           {soundEnabled ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
         </button>
-      </div>
+        </div>
+      )}
 
       {/* Main Content Viewport */}
       <main className="relative z-10">{children}</main>

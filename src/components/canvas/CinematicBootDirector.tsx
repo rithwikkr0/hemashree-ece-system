@@ -89,58 +89,65 @@ export const CinematicBootDirector: React.FC<CinematicBootDirectorProps> = ({
     });
     timelineRef.current = tl;
 
-    // Scene 01: BOOT (0.0s - 0.5s)
+    // 0.0s - 0.7s: Clean Black + faint ambient glow
     tl.call(() => {
       setBootStage('BOOT');
       triggerAudio('boot');
     }, undefined, 0);
 
-    // Scene 02: PCB_POWER (0.5s - 1.4s)
+    // 0.7s - 1.6s: Single coherent pulse ring expanding
     tl.call(() => {
       setBootStage('PCB_POWER');
       triggerAudio('pulse');
-    }, undefined, 0.5);
+    }, undefined, 0.7);
 
+    tl.to(state, {
+      pcbPulse: 1,
+      duration: 0.9,
+      ease: 'power2.out',
+    }, 0.7);
+
+    // 1.6s - 2.5s: Procedural PCB substrate lines illuminate
     tl.to(state, {
       pcbPower: 1,
       camZ: 2.2,
       duration: 0.9,
       ease: 'power2.out',
-    }, 0.5);
+    }, 1.6);
 
-    // Scene 03: PORTRAIT_REVEAL (1.4s - 2.4s)
+    // 2.5s - 3.7s: High-res portrait fade-in (Ph.jpeg) with soft edge vignette
     tl.call(() => {
       setBootStage('PORTRAIT_REVEAL');
-    }, undefined, 1.4);
+    }, undefined, 2.5);
 
     tl.to(state, {
       portraitReveal: 1,
       portraitScan: 1,
       camZ: 3.8,
       camY: 0,
-      duration: 1.0,
+      duration: 1.2,
       ease: 'power1.out',
-    }, 1.4);
+    }, 2.5);
 
-    // Scene 04: CORE_ACTIVATE (2.4s - 2.9s)
+    // 3.7s - 4.7s: Smooth transition to Hero
     tl.call(() => {
       setBootStage('CORE_ACTIVATE');
       triggerAudio('coreConfirm');
-    }, undefined, 2.4);
+    }, undefined, 3.7);
 
     tl.to(state, {
       portraitDissolve: 1,
       coreActivation: 1,
       camZ: 7.2,
-      duration: 0.5,
+      duration: 1.0,
       ease: 'power2.inOut',
-    }, 2.4);
+    }, 3.7);
 
-    // Transition directly to HERO when sequence ends at 2.9s
+    // 4.7s - 5.0s: Hero settled, UI interactive
     tl.call(() => {
       setBootStage('HERO');
       setIsBooting(false);
-    }, undefined, 2.9);
+    }, undefined, 4.7);
 
     return () => {
       tl.kill();

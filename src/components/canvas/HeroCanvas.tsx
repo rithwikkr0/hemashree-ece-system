@@ -9,6 +9,8 @@ import { LabHUDOverlay } from './LabHUDOverlay';
 import { CinematicVideo } from '../common/CinematicVideo';
 import { ASSET_PATHS, FALLBACK_HOLOGRAM_PORTRAIT } from '../../config/assets';
 
+import { Hero3DEnvironment } from './Hero3DEnvironment';
+
 // Error Boundary for WebGL compatibility
 class WebGLBoundary extends React.Component<
   { children: React.ReactNode; fallback: React.ReactNode },
@@ -114,7 +116,7 @@ export const HeroCanvas: React.FC = () => {
             <Suspense fallback={null}>
               {isBooting ? (
                 <CinematicBootDirector />
-              ) : (
+              ) : (selectedStationId !== null || labViewMode !== 'LAB_OVERVIEW') ? (
                 <>
                   <ambientLight intensity={0.4} />
                   <directionalLight
@@ -128,6 +130,8 @@ export const HeroCanvas: React.FC = () => {
 
                   <InteractiveLabArena />
                 </>
+              ) : (
+                <Hero3DEnvironment />
               )}
             </Suspense>
           </Canvas>

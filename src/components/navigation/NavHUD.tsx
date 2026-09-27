@@ -49,9 +49,9 @@ export const NavHUD: React.FC = () => {
       {/* Desktop Clean Premium Navigation Bar */}
       <nav
         aria-label="Website Navigation"
-        className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50 items-center px-4 py-2 bg-black/75 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_4px_30px_rgba(0,0,0,0.8)]"
+        className="hidden md:flex fixed top-5 left-1/2 -translate-x-1/2 z-50 items-center px-3 py-1.5 bg-black/80 backdrop-blur-xl border border-white/15 rounded-full shadow-[0_4px_35px_rgba(0,0,0,0.85)]"
       >
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1 sm:gap-1.5">
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -59,15 +59,15 @@ export const NavHUD: React.FC = () => {
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={clsx(
-                  'relative px-3.5 py-1.5 rounded-full text-xs font-mono font-medium tracking-wider transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-ece-cyan',
+                  'relative px-4 py-2 rounded-full text-[13px] font-mono font-medium tracking-wider transition-all duration-200 outline-none focus-visible:ring-1 focus-visible:ring-ece-cyan select-none',
                   isActive
-                    ? 'text-white font-bold bg-white/10 shadow-[0_0_12px_rgba(255,255,255,0.1)]'
+                    ? 'text-white font-semibold bg-white/12 shadow-[0_0_15px_rgba(255,255,255,0.12)]'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
                 )}
               >
                 <span>{item.label}</span>
                 {isActive && (
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-ece-cyan rounded-full" />
+                  <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-ece-cyan rounded-full shadow-[0_0_8px_#00f0ff]" />
                 )}
               </button>
             );

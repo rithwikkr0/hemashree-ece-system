@@ -103,15 +103,28 @@ export const SystemProfileSection: React.FC = () => {
       {/* Main Profile Dossier */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
         
-        {/* Left: Original Photo */}
+        {/* Left: Original Photo with Interactive Hover & Focus */}
         <div className="lg:col-span-5 flex flex-col items-center">
-          <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-[0_12px_50px_rgba(0,0,0,0.7)] bg-black/50">
+          <div
+            onClick={() => setIsVideoModalOpen(true)}
+            className="group relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden border border-white/15 hover:border-ece-cyan/50 shadow-[0_12px_50px_rgba(0,0,0,0.7)] hover:shadow-[0_0_40px_rgba(0,240,255,0.25)] bg-black/50 transition-all duration-300 cursor-pointer hover:-translate-y-1"
+            title="Click to view cinematic reel"
+          >
             <img
               src={ASSET_PATHS.portraits.verifiedOriginal}
               alt="Hemashree B M"
-              className="w-full h-full object-cover filter contrast-[1.02]"
+              className="w-full h-full object-cover filter contrast-[1.02] group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+            {/* Subtle Interactive Scanline Highlight on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ece-cyan/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+            {/* Click overlay indicator */}
+            <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-black/70 backdrop-blur-md rounded-full border border-white/20 text-[10px] font-mono text-slate-300 group-hover:text-ece-cyan flex items-center gap-1 transition-colors">
+              <Film className="w-3 h-3" />
+              <span>REEL</span>
+            </div>
           </div>
 
           <button

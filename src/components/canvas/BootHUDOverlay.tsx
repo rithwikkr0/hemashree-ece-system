@@ -18,7 +18,7 @@ export const BootHUDOverlay: React.FC<BootHUDOverlayProps> = ({ stage }) => {
   return (
     <div 
       onClick={skipIntro}
-      className="fixed inset-0 z-30 pointer-events-auto cursor-pointer flex flex-col justify-between p-6 sm:p-10 select-none bg-black/40 backdrop-blur-[2px]"
+      className="fixed inset-0 z-50 pointer-events-auto cursor-pointer flex flex-col justify-between p-6 sm:p-10 select-none bg-black/40 backdrop-blur-[2px]"
       title="Click anywhere to skip intro"
     >
       {/* Top Header: Clear Skip control */}
@@ -68,10 +68,9 @@ export const BootHUDOverlay: React.FC<BootHUDOverlayProps> = ({ stage }) => {
 
       </div>
 
-      {/* Bottom Telemetry Footer during boot */}
-      <div className="flex items-center justify-between font-mono text-[10px] text-slate-500 border-t border-white/5 pt-2">
-        <span>SECURITY LEVEL: RESEARCH // UNRESTRICTED</span>
-        <span>ACED // ALLIANCE UNIVERSITY</span>
+      {/* Bottom Minimal Hint */}
+      <div className="flex items-center justify-center font-mono text-[10px] text-slate-500/70 pt-2">
+        <span>PRESS ESC OR CLICK ANYWHERE TO SKIP</span>
       </div>
     </div>
   );

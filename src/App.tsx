@@ -16,6 +16,8 @@ import { SystemCapabilitiesSection } from './components/skills/SystemCapabilitie
 import { MissionControlSection } from './components/missions/MissionControlSection';
 import { ArchiveCredentialsSection } from './components/archive/ArchiveCredentialsSection';
 import { TransmissionSection } from './components/transmission/TransmissionSection';
+import { EngineeringCompanionBot } from './components/common/EngineeringCompanionBot';
+import { SectionDivider } from './components/common/SectionDivider';
 import { 
   Cpu, 
   CheckCircle2, 
@@ -116,6 +118,9 @@ export const App: React.FC = () => {
     <SystemHUDFrame>
       <NavHUD />
 
+      {/* COMPANION NAVIGATION BOT */}
+      <EngineeringCompanionBot />
+
       {/* PHASE 4: FULL-SCREEN 3D INTERACTIVE PROJECT EXPERIENCE (ON-DEMAND MODAL) */}
       {selectedProjectId && <ProjectExperience />}
 
@@ -130,8 +135,12 @@ export const App: React.FC = () => {
         {/* SECTION 02: SYSTEM PROFILE (PHASE 6) */}
         <SystemProfileSection />
 
+        <SectionDivider variant="circuit" />
+
         {/* SYSTEM CAPABILITIES & SKILLS TAXONOMY (PHASE 6) */}
         <SystemCapabilitiesSection />
+
+        <SectionDivider variant="waveform" />
 
         {/* SECTION 03: HARDWARE // LAB DIRECTORY */}
         <section id="lab" className="scroll-mt-24 space-y-8">
@@ -185,6 +194,8 @@ export const App: React.FC = () => {
             })}
           </div>
         </section>
+
+        <SectionDivider variant="circuit" />
 
         {/* SECTION 04: PROJECT ARCHITECTURE & 3D INTERACTIVE EXPERIENCES */}
         <section id="projects" className="scroll-mt-24 space-y-8">
@@ -241,10 +252,9 @@ export const App: React.FC = () => {
                 <div className="flex items-center justify-between pt-4 border-t border-white/5">
                   <button
                     onClick={() => handleLaunchProject(project.id)}
-                    className="px-4 py-2 bg-white text-black hover:bg-slate-200 font-sans font-semibold text-xs tracking-wider uppercase rounded-full transition-all flex items-center gap-2 shadow-[0_0_12px_rgba(255,255,255,0.15)]"
+                    className="px-5 py-2.5 bg-white text-black hover:bg-slate-200 font-sans font-semibold text-xs tracking-wider uppercase rounded-full transition-all flex items-center gap-2 shadow-[0_0_12px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <Play className="w-3 h-3 fill-current" />
-                    <span>EXPLORE 3D →</span>
+                    <span>EXPLORE →</span>
                   </button>
 
                   <div className="flex items-center gap-3 font-mono text-xs">
@@ -277,14 +287,22 @@ export const App: React.FC = () => {
           </div>
         </section>
 
+        <SectionDivider variant="waveform" />
+
         {/* SECTION 05: SIGNALS // DSP INTERACTIVE ENVIRONMENT (PHASE 5) */}
         <DspInlineSection />
+
+        <SectionDivider variant="signal" />
 
         {/* SECTION 06: MISSIONS // HACKATHON & FIELD MISSIONS (PHASE 6) */}
         <MissionControlSection />
 
+        <SectionDivider variant="minimal" />
+
         {/* SECTION 07: ARCHIVE // CREDENTIALS & ACADEMIC DOSSIER (PHASE 6) */}
         <ArchiveCredentialsSection />
+
+        <SectionDivider variant="waveform" />
 
         {/* SECTION 08: TRANSMISSION // DIRECT COMMUNICATIONS (PHASE 6) */}
         <TransmissionSection />

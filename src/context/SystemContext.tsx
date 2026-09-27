@@ -153,34 +153,38 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setBootStage('HERO');
   };
 
-  // Directive 1: RAPID AUTO-DISMISS & IMMEDIATE INTERACTION DISMISSAL
+  // Directive 1: 5-SECOND CINEMATIC INTRO WITH 6.0S SAFETY TIMEOUT & IMMEDIATE INTERACTION SKIP
   useEffect(() => {
     if (!isBooting) return;
 
-    // Any user touch, scroll, click, or wheel immediately dismisses boot
-    const handleDismissInteraction = () => {
+    // Immediate skip on user interaction (Escape, Click, Touch, Scroll, Wheel)
+    const handleDismissInteraction = (e?: Event) => {
       skipIntro();
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+        skipIntro();
+      }
     };
 
     window.addEventListener('wheel', handleDismissInteraction, { passive: true, once: true });
     window.addEventListener('touchstart', handleDismissInteraction, { passive: true, once: true });
     window.addEventListener('scroll', handleDismissInteraction, { passive: true, once: true });
-    window.addEventListener('keydown', handleDismissInteraction, { once: true });
+    window.addEventListener('keydown', handleKeyDown, { once: true });
     window.addEventListener('click', handleDismissInteraction, { once: true });
 
-    const isMobile = typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-    const timeoutDuration = isMobile ? 1000 : 2500;
-
+    // Hard safety timeout at 6.0 seconds
     const timer = setTimeout(() => {
       skipIntro();
-    }, timeoutDuration);
+    }, 6000);
 
     return () => {
       clearTimeout(timer);
       window.removeEventListener('wheel', handleDismissInteraction);
       window.removeEventListener('touchstart', handleDismissInteraction);
       window.removeEventListener('scroll', handleDismissInteraction);
-      window.removeEventListener('keydown', handleDismissInteraction);
+      window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('click', handleDismissInteraction);
     };
   }, [isBooting]);

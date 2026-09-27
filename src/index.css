@@ -101,6 +101,31 @@
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3.5s ease-in-out infinite;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-lift {
+    transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1);
+  }
+  .interactive-lift:hover {
+    transform: translateY(-2px);
+  }
+  .interactive-lift:active {
+    transform: translateY(0px) scale(0.98);
+  }
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   * {
