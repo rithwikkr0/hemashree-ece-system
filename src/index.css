@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ece-bg: #05080c;
+    --color-ece-cyan: #00f0ff;
+    --color-ece-orange: #ff7b00;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+    background-color: #05080c;
+  }
+
+  body {
+    background-color: #05080c;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom sleek scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #05080c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 240, 255, 0.25);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 240, 255, 0.6);
+  }
+}
+
+@layer components {
+  /* Futuristic HUD Glass Panel */
+  .hud-glass {
+    background: rgba(14, 22, 34, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 240, 255, 0.16);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .hud-glass-orange {
+    background: rgba(20, 15, 12, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 123, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  /* Tech Cut Corner */
+  .tech-corner-cut {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 14px) 0,
+      100% 14px,
+      100% 100%,
+      14px 100%,
+      0 calc(100% - 14px)
+    );
+  }
+
+  .tech-corner-cut-sm {
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      0 calc(100% - 8px)
+    );
+  }
+
+  /* Glowing circuit grid line */
+  .pcb-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+  }
+
+  /* Scanline overlay for HUD inspection views */
+  .scanline-overlay {
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 240, 255, 0.03),
+      rgba(0, 240, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

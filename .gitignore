@@ -1,0 +1,84 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production output
+dist/
+dist-ssr/
+build/
+*.local
+
+# Logs and Automation Artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+@AutomationLog.txt
+live_execution.log
+production_run.log
+
+# Private Career / Job Search Engine Data & Spreadsheets
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.pptx
+*.ppt
+*.txt
+*.csv
+application_tracker.json
+qa_submitted_ledger.json
+verified_jobs_execution_audit.json
+application_screenshots/
+engine/
+jobs/
+data/
+archive/
+docs/
+reports/
+resumes/
+tailored_resumes/
+scratch/
+tests/
+tools/
+config/
+.agents/
+.venv/
+__pycache__/
+*.py[cod]
+scripts/*.py
+!scripts/generate_cinematic_videos.cjs
+
+# Root-level personal credential scans, marks cards, and temporary docs
+/*.pdf
+/*.jpeg
+/*.jpg
+/*.png
+application_answer_bank.md
+BROWSER_HEALTH_REPORT.md
+BROWSER_INTEGRATION.md
+GITHUB_PROJECT_MAP.md
+master_career_database.md
+master_career_database_json.md
+master_resume_content.md
+PROJECT_AUDIT.md
+SETUP_REPORT.md
+SYSTEM_ARCHITECTURE.md
+TEST_REPORT.md
+
+# Whitelist public portfolio assets (including resume and portraits)
+!public/
+!public/**
+
+# Environment & secrets
+.env
+.env.*
+*.local
+
+# Editor & OS caches
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
